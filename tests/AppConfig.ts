@@ -1,18 +1,18 @@
 /**
  * Created by Roman.Gaikov
  */
-import {ButtonsPanel} from "./components/ButtonsPanel";
-import {ButtonsPanelMediator} from "./components/ButtonsPanelMediator";
+import {ButtonsPanel} from "./views/ButtonsPanel";
+import {ButtonsPanelMediator} from "./views/ButtonsPanelMediator";
 import {TestAppMediator} from "./TestAppMediator";
 import {TestApp} from "./TestApp";
-import {ItemsListView} from "./components/ItemsListView";
-import {ItemsListMediator} from "./components/ItemsListMediator";
+import {ItemsListView} from "./views/ItemsListView";
+import {ItemsListMediator} from "./views/ItemsListMediator";
 import {ToDoListModel} from "./model/ToDoListModel";
 import {CreateListCommand} from "./commands/CreateListCommand";
-import {ItemRenderer} from "./components/ItemRenderer";
-import {ItemRendererMediator} from "./components/ItemRendererMediator";
-import {CoreSignal} from "./events/CoreSignal";
-import {ItemRendererMediator2} from "./components/ItemRendererMediator2";
+import {ItemRenderer} from "./views/ItemRenderer";
+import {ItemRendererMediator} from "./views/ItemRendererMediator";
+import {CoreSignal} from "./signals/CoreSignal";
+import {ItemRendererMediator2} from "./views/ItemRendererMediator2";
 import {IConfig} from "../src/mvc/context/IConfig";
 import {IMapping} from "../src/mvc/context/IMapping";
 

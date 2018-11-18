@@ -3,7 +3,7 @@
  */
 
 import {TestApp, TestAppEvent} from "./TestApp";
-import {CoreSignal} from "./events/CoreSignal";
+import {CoreSignal} from "./signals/CoreSignal";
 import {Mediator} from "../src/mvc/view/Mediator";
 
 export class TestAppMediator extends Mediator<TestApp> {

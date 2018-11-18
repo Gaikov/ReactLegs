@@ -13,12 +13,12 @@ export class ReactView<P = {}, S = {}> extends React.Component<P, S> {
     private _dispatcher: EventEmitter = new EventEmitter();
     private _mediators: MediatorsBundle;
 
-    dispatchGlobal(name: string, data?: any): void {
-        Context.instance().eventBus.emit(name, data);
-    }
-
     locate<T extends Locatable>(modelClass: ClassType<T>):T {
         return Context.instance().locate(modelClass);
+    }
+
+    dispatchGlobal(name: string, data?: any): void {
+        Context.instance().eventBus.emit(name, data);
     }
 
     dispatchLocal(name: string, data?: any): void {

@@ -1,7 +1,7 @@
 import * as React from "react";
-import {ButtonsPanel} from "./components/ButtonsPanel";
-import {ItemsListView} from "./components/ItemsListView";
-import {CoreSignal} from "./events/CoreSignal";
+import {ButtonsPanel} from "./views/ButtonsPanel";
+import {ItemsListView} from "./views/ItemsListView";
+import {CoreSignal} from "./signals/CoreSignal";
 import {ReactView} from "../src/mvc/view/ReactView";
 
 /**
