@@ -31,27 +31,52 @@ export class ItemRenderer extends ReactView<IItemRendererProps, IItemRendererSta
         borderWidth: 2
     };
 
-    onClickRemove: (index: number) => void;
+    get editing(): boolean {
+        return this.state.editing
+    }
+
+    set editing(value: boolean) {
+        this.setState({editing: value});
+    }
+
+    get itemIndex(): number {
+        return this.props.index;
+    }
+
+
+    onClickChange: (caption: string, notes: string) => void;
+    onClickRemove: () => void;
 
     renderStatic(): React.ReactNode {
         return <div>
             <div>Caption: {this.props.data.caption}</div>
             <div> Nodes: {this.props.data.notes}</div>
-            <button onClick={() => this.setState({editing: true})}>Edit</button>
-            <button onClick={() => this.onClickRemove(this.props.index)}>Remove</button>
+            <button onClick={() => this.editing = true}>Edit</button>
+            <button onClick={() => this.onClickRemove()}>Remove</button>
         </div>
     }
 
+    private onInputChanged(e: React.ChangeEvent): string {
+        const target = e.nativeEvent.target as HTMLInputElement;
+        return target.value
+    }
+
     renderEditing(): React.ReactNode {
+
+        let caption = this.props.data.caption;
+        let notes = this.props.data.notes;
+
         return <div>
             <div>Caption:<br/>
-                <input type="text" defaultValue={this.props.data.caption}/>
+                <input type="text" defaultValue={this.props.data.caption}
+                       onChange={e => caption = this.onInputChanged(e)}/>
             </div>
             <div>Notes:<br/>
-                <input type="text" defaultValue={this.props.data.notes}/>
+                <input type="text" defaultValue={this.props.data.notes}
+                       onChange={e => notes = this.onInputChanged(e)}/>
             </div>
-            <button>Ok</button>
-            <button onClick={()=> this.setState({editing: false})}>Cancel</button>
+            <button onClick={() => this.onClickChange(caption, notes)}>Ok</button>
+            <button onClick={() => this.editing = false}>Cancel</button>
         </div>
     }
 

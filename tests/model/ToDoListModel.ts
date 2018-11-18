@@ -52,4 +52,9 @@ export class ToDoListModel extends Locatable {
     getItem(index: number): ToDoItem {
         return this._items[index];
     }
+
+    setItem(index: number, item: ToDoItem) {
+        this._items[index] = item;
+        this._eventBus.emit(ModelEvent.CHANGED);
+    }
 }
