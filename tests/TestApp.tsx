@@ -1,7 +1,7 @@
 import * as React from "react";
 import {ButtonsPanel} from "./components/ButtonsPanel";
 import {ItemsListView} from "./components/ItemsListView";
-import {RefreshEvent} from "./events/RefreshEvent";
+import {CoreSignal} from "./events/CoreSignal";
 import {ReactView} from "../src/mvc/view/ReactView";
 
 /**
@@ -9,7 +9,7 @@ import {ReactView} from "../src/mvc/view/ReactView";
  */
 
 export class TestAppEvent {
-    static readonly REFRESH_CLICKED: string = "TestAppEvent::REFRESH_CLICKED";
+    static readonly REFRESH_CLICKED: string = "TestAppEvent::CREATE_LIST";
 }
 
 export class TestApp extends ReactView<{}, {}> {
@@ -32,9 +32,9 @@ export class TestApp extends ReactView<{}, {}> {
         console.log("app.render");
         return <div>
             <div style={{margin: 5}}>
-                <button onClick={() => this.dispatchGlobal(RefreshEvent.REFRESH_CLICKED, 5)}>Refresh list</button>
-                <button onClick={() => this.dispatchLocal(TestAppEvent.REFRESH_CLICKED)}>Refresh list 2</button>
-                <button onClick={() => this.button3Click()}>Refresh list 2</button>
+                <button onClick={() => this.dispatchGlobal(CoreSignal.CREATE_LIST, 5)}>Refresh list (5 items)</button>
+                <button onClick={() => this.dispatchLocal(TestAppEvent.REFRESH_CLICKED)}>Refresh list (10 items)</button>
+                <button onClick={() => this.button3Click()}>Refresh list (20 items)</button>
             </div>
             <ButtonsPanel/>
             <ItemsListView/>

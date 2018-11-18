@@ -3,7 +3,7 @@
  */
 
 import {TestApp, TestAppEvent} from "./TestApp";
-import {RefreshEvent} from "./events/RefreshEvent";
+import {CoreSignal} from "./events/CoreSignal";
 import {Mediator} from "../src/mvc/view/Mediator";
 
 export class TestAppMediator extends Mediator<TestApp> {
@@ -13,11 +13,11 @@ export class TestAppMediator extends Mediator<TestApp> {
 
 
         this.addViewListener(TestAppEvent.REFRESH_CLICKED, () => {
-            this.dispatch(RefreshEvent.REFRESH_CLICKED, 10);
+            this.dispatch(CoreSignal.CREATE_LIST, 10);
         });
 
         this.view.button3Click = ()=> {
-            this.dispatch(RefreshEvent.REFRESH_CLICKED, 20);
+            this.dispatch(CoreSignal.CREATE_LIST, 20);
         };
 
         console.info("app initialized");

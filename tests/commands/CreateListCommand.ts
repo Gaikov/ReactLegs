@@ -7,7 +7,7 @@ import {ToDoListModel} from "../model/ToDoListModel";
 import {Command} from "../../src/mvc/command/Command";
 import {ToDoItem} from "../model/ToDoItem";
 
-export class RefreshListCommand extends Command {
+export class CreateListCommand extends Command {
     execute(context: IContext, count: number): void {
         const model = context.locate(ToDoListModel);
         const start = model.numItems;

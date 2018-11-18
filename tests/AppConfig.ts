@@ -8,10 +8,10 @@ import {TestApp} from "./TestApp";
 import {ItemsListView} from "./components/ItemsListView";
 import {ItemsListMediator} from "./components/ItemsListMediator";
 import {ToDoListModel} from "./model/ToDoListModel";
-import {RefreshListCommand} from "./commands/RefreshListCommand";
+import {CreateListCommand} from "./commands/CreateListCommand";
 import {ItemRenderer} from "./components/ItemRenderer";
 import {ItemRendererMediator} from "./components/ItemRendererMediator";
-import {RefreshEvent} from "./events/RefreshEvent";
+import {CoreSignal} from "./events/CoreSignal";
 import {ItemRendererMediator2} from "./components/ItemRendererMediator2";
 import {IConfig} from "../src/mvc/context/IConfig";
 import {IMapping} from "../src/mvc/context/IMapping";
@@ -27,6 +27,6 @@ export class AppConfig implements IConfig {
         context.mapMediator(ItemRenderer, ItemRendererMediator);
         context.mapMediator(ItemRenderer, ItemRendererMediator2);
 
-        context.mapCommand(RefreshEvent.REFRESH_CLICKED, RefreshListCommand);
+        context.mapCommand(CoreSignal.CREATE_LIST, CreateListCommand);
     }
 }
