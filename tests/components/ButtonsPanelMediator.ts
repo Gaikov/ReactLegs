@@ -4,6 +4,7 @@
 import {Mediator} from "../../src/mvc/view/Mediator";
 import {ButtonsPanel, ButtonsPanelEvent} from "./ButtonsPanel";
 import {ToDoListModel} from "../model/ToDoListModel";
+import {ToDoItem} from "../model/ToDoItem";
 
 export class ButtonsPanelMediator extends Mediator<ButtonsPanel> {
 
@@ -21,7 +22,9 @@ export class ButtonsPanelMediator extends Mediator<ButtonsPanel> {
 
     private onAddClicked() {
         console.log("add click");
-        const value = Math.ceil(Math.random() * 100);
+        const value = new ToDoItem(
+            Math.ceil(Math.random() * 100).toString(),
+            "edit nodes here");
         this._model.add(value);
 
     }
