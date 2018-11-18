@@ -9,7 +9,7 @@ import {ClassMapping, InstanceStorage} from "../locatable/InstanceStorage";
 import {Locatable} from "../locatable/Locatable";
 import {IContext} from "./IContext";
 import {IConfig} from "./IConfig";
-import {ClassType} from "../common";
+import {ClassType, getClassId} from "../common";
 import {MediatorMapping, MediatorsBundle} from "../view/MediatorMapping";
 import {EventBus} from "./EventBus";
 import {IMapping} from "./IMapping";
@@ -38,7 +38,7 @@ export class Context implements IContext, IMapping {
     }
 
     mapMediator<T extends ReactView>(viewClass: ClassType<T>, mediatorClass: ClassType<Mediator<T>>) {
-        const className = viewClass.name;
+        const className = getClassId(viewClass);
         let mapping: MediatorMapping = this._mediatorsMap[className];
         if (!mapping) {
             this._mediatorsMap[className] = mapping = new MediatorMapping(this);
@@ -62,7 +62,7 @@ export class Context implements IContext, IMapping {
     }
 
     createMediators(view: ReactView): MediatorsBundle {
-        const mapping = this._mediatorsMap[view.constructor.name];
+        const mapping = this._mediatorsMap[getClassId(view.constructor)];
         if (mapping) {
             return mapping.createMediators(view);
         }
