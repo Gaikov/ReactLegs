@@ -3,7 +3,7 @@
  */
 import {Locatable} from "./Locatable";
 import {IContext} from "../context/IContext";
-import {ClassType} from "../common";
+import {ClassType, getClassId} from "../common";
 
 export class ClassMapping {
     private readonly _modelClass: typeof Locatable;
@@ -46,7 +46,7 @@ export class InstanceStorage {
     }
 
     mapLocatable(modelClass: typeof Locatable):ClassMapping {
-        const className = modelClass.name;
+        const className = getClassId(modelClass);
         if (this._map[className]) {
             console.warn("locatable already mapped: ", className);
             return null;
@@ -55,8 +55,8 @@ export class InstanceStorage {
     }
 
     locale<T extends Locatable>(modelClass: ClassType<T>): T {
-        const className = modelClass.name;
-        const mapping = this._map[modelClass.name];
+        const className = getClassId(modelClass);
+        const mapping = this._map[className];
         if (!mapping) {
             console.warn("locatable is not mapped: ", className);
             return null;

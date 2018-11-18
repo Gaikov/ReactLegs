@@ -23,16 +23,18 @@ export class MediatorsBundle {
 export class MediatorMapping {
     private readonly _context: Context;
     private readonly _mediatorClasses: ClassType<Mediator<ReactView>>[] = [];
+    private _viewClass: ClassType<ReactView>;
 
-    constructor(context: Context) {
+    constructor(viewClass: ClassType<ReactView>, context: Context) {
         this._context = context;
+        this._viewClass = viewClass;
     }
 
-    map(cls: ClassType<Mediator<ReactView>>):void {
-        if (this._mediatorClasses.indexOf(cls) >= 0) {
-            console.warn("mediator class already mapped: ", cls.name);
+    map(mediatorClass: ClassType<Mediator<ReactView>>):void {
+        if (this._mediatorClasses.indexOf(mediatorClass) >= 0) {
+            console.warn(`mediator class '${mediatorClass.name}' already mapped to '${this._viewClass.name}'`);
         } else {
-            this._mediatorClasses.push(cls);
+            this._mediatorClasses.push(mediatorClass);
         }
     }
 

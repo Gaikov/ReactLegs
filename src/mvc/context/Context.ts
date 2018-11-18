@@ -41,14 +41,14 @@ export class Context implements IContext, IMapping {
         const className = getClassId(viewClass);
         let mapping: MediatorMapping = this._mediatorsMap[className];
         if (!mapping) {
-            this._mediatorsMap[className] = mapping = new MediatorMapping(this);
+            this._mediatorsMap[className] = mapping = new MediatorMapping(viewClass, this);
         }
         mapping.map(mediatorClass);
     }
 
-    mapCommand(eventName: string, cls: ClassType<Command>): void {
+    mapCommand(eventName: string, commandClass: ClassType<Command>): void {
         this._dispatcher.addListener(eventName, data => {
-            const command = new cls();
+            const command = new commandClass();
             command.execute(this, data);
         });
     }
